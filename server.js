@@ -1,10 +1,14 @@
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
+app.use(cors());   // <-- THIS FIXES THE ERROR
 
 app.get("/", (req, res) => {
     res.send("Backend running successfully!");
 });
 
-app.listen(3000, () => {
-    console.log("Server started on port 3000");
+app.listen(5000, "0.0.0.0", () => {
+  console.log("Server running on 0.0.0.0:5000");
 });
+
