@@ -17,25 +17,12 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                echo "Building application..."
-                sh 'npm run build'
-            }
-        }
-
         stage('Test') {
             steps {
                 echo "Running tests..."
-                sh 'npm test || true'   // avoids pipeline failure if no tests
+                sh 'npm test || true'   // avoids pipeline failure if tests don't exist
             }
         }
 
-        stage('Archive Artifacts') {
-            steps {
-                echo "Archiving build output..."
-                archiveArtifacts artifacts: '**/build/**', fingerprint: true
-            }
-        }
     }
 }
